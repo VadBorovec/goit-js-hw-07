@@ -27,3 +27,9 @@ const makeGalleryItemMarkup = ({
 const GallaryMarkup = galleryItems.map(makeGalleryItemMarkup).join("");
 
 galleryList.insertAdjacentHTML("beforeend", GallaryMarkup);
+
+//* Застосування SimpleLightbox
+new SimpleLightbox("ul.gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});

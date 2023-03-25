@@ -54,7 +54,7 @@ function createLightBox(image) {
   isVisible(instance);
 }
 
-//* Додавання та зняття прослуховувача клавіатури
+//* Додавання та зняття прослуховувача клавіатури (not sure if the listener is being removed)
 function isVisible(instance) {
   if (instance.visible()) {
     document.addEventListener("keydown", onEscKeyPress);
