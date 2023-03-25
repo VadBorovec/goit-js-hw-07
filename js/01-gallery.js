@@ -4,7 +4,6 @@ import { galleryItems } from "./gallery-items.js";
 console.log(galleryItems);
 
 //* Створення і рендер розмітки на підставі масиву даних galleryItems і наданого шаблону елемента галереї.
-
 const galleryList = document.querySelector("ul.gallery");
 
 const makeGalleryItemMarkup = ({
@@ -30,10 +29,10 @@ const GallaryMarkup = galleryItems.map(makeGalleryItemMarkup).join("");
 
 galleryList.insertAdjacentHTML("beforeend", GallaryMarkup);
 
-//* Реалізація делегування на ul.gallery і отримання url великого зображення.
-
+//* Встановлення прослуховувача подій
 galleryList.addEventListener("click", openModal);
 
+//* Відкриття модального вікна по кліку на елементі галереї.
 let instance; // Declare the instance variable here
 
 function openModal(event) {
@@ -46,6 +45,7 @@ function openModal(event) {
   createLightBox(clickOnImg);
 }
 
+//* Створення модалього вікна basicLightbox
 function createLightBox(image) {
   instance = basicLightbox.create(`<img src="${image.dataset.source}">`);
 
@@ -54,6 +54,7 @@ function createLightBox(image) {
   isVisible(instance);
 }
 
+//* Додавання та зняття прослуховувача клавіатури
 function isVisible(instance) {
   if (instance.visible()) {
     document.addEventListener("keydown", onEscKeyPress);
@@ -62,6 +63,7 @@ function isVisible(instance) {
   }
 }
 
+//* Закриття модали при натисненні на "Escape"
 function onEscKeyPress(event) {
   const ESC_KEY_CODE = "Escape";
 
