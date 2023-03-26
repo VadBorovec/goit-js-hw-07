@@ -47,20 +47,17 @@ function openModal(event) {
 
 //* Створення модалього вікна basicLightbox
 function createLightBox(image) {
-  instance = basicLightbox.create(`<img src="${image.dataset.source}">`);
+  instance = basicLightbox.create(`<img src="${image.dataset.source}">`, {
+    onShow: (instance) => {
+      document.addEventListener("keydown", onEscKeyPress);
+    },
+
+    onClose: (instance) => {
+      document.removeEventListener("keydown", onEscKeyPress);
+    },
+  });
 
   instance.show();
-
-  isVisible(instance);
-}
-
-//* Додавання та зняття прослуховувача клавіатури (not sure if the listener is being removed)
-function isVisible(instance) {
-  if (instance.visible()) {
-    document.addEventListener("keydown", onEscKeyPress);
-  } else if (!instance.visible()) {
-    document.removeEventListener("keydown", onEscKeyPress);
-  }
 }
 
 //* Закриття модали при натисненні на "Escape"
@@ -68,6 +65,7 @@ function onEscKeyPress(event) {
   const ESC_KEY_CODE = "Escape";
 
   if (event.code === ESC_KEY_CODE) {
+    console.log("listen");
     instance.close();
   }
 }
